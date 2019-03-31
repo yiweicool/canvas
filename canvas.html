@@ -59,7 +59,7 @@
              dot_flag = false;
 
        var LineColor = "red",
-       LineWidth = 2;
+       LineWidth = 4;
 
 
 
@@ -123,10 +123,15 @@
        if(e.code == 'ArrowUp'){
          console.log(e.code);
          LineWidth = LineWidth + 1;
+         ctx.fillRect(currX, currY, r1, r2);
+         r1++;
+         r2++;
        }
 
        if(e.code == 'ArrowDown'&& LineWidth > 1){
          console.log(e.code);
+         r1--;
+         r2--;
          LineWidth = LineWidth - 1;
        }
 
@@ -161,8 +166,8 @@
                   LineColor = "white";
                   break;
           }
-          if (LineColor == "white") lineWidth = 14;
-          else lineWidth = 2;
+          /*if (LineColor == "white") lineWidth = 14;
+          else lineWidth = 2;*/
 
       }
 
@@ -193,18 +198,18 @@
       }*/
 
       function findxy(res, e) {
-          if (res == 'down') {
+          if (res == 'move') {
               prevX = currX;
               prevY = currY;
               currX = e.clientX - canvas.offsetLeft;
               currY = e.clientY - canvas.offsetTop;
-
+              draw();
               flag = true;
               dot_flag = true;
               if (dot_flag) {
                   ctx.beginPath();
                   ctx.fillStyle = LineColor;
-                  ctx.fillRect(currX, currY, 2, 2);
+                  ctx.fillRect(currX, currY, 5, 5);
                   ctx.closePath();
                   dot_flag = false;
               }
@@ -212,7 +217,7 @@
           if (res == 'up' || res == "out") {
               flag = false;
           }
-          if (res == 'move') {
+        /*  if (res == 'move') {
               if (flag) {
                   prevX = currX;
                   prevY = currY;
@@ -220,7 +225,7 @@
                   currY = e.clientY - canvas.offsetTop;
                   draw();
               }
-          }
+          }*/
       }
 
       function touchxy(res, e) {
@@ -235,7 +240,7 @@
               if (dot_flag) {
                   ctx.beginPath();
                   ctx.fillStyle = LineColor;
-                  ctx.fillRect(currX, currY, 2, 2);
+                  ctx.fillRect(currX, currY, 5, 5);
                   ctx.closePath();
                   dot_flag = false;
               }
